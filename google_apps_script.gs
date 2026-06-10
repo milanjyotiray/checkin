@@ -397,11 +397,11 @@ function doPost(e) {
 
       if (foundRowIndex === -1) {
         // Append a new row recording the failed check-in attempt (NO)
-        var newRow = new Array(headers.length).fill("");
-        newRow[emailColIdx] = email;
-        newRow[presentColIdx] = "NO";
-        newRow[timestampColIdx] = formattedTimestamp;
-        sheet.appendRow(newRow);
+        var checkInRow = new Array(headers.length).fill("");
+        checkInRow[emailColIdx] = email;
+        checkInRow[presentColIdx] = "NO";
+        checkInRow[timestampColIdx] = formattedTimestamp;
+        sheet.appendRow(checkInRow);
 
         return ok({ success: false, error: "NOT_FOUND" });
       }
