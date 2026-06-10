@@ -98,12 +98,8 @@ export default function CheckInPage() {
         }
         fetchStats();
       } else {
-        if (data.error === "NOT_FOUND") {
-          setScreenState("error");
-        } else {
-          setErrorMsg(data.error || "An unexpected error occurred. Please try again.");
-          setScreenState("form");
-        }
+        // Fall back to registration not found state (Red error card) for all backend errors
+        setScreenState("error");
       }
     } catch (err) {
       console.error("Check-in request failed:", err);
@@ -381,7 +377,7 @@ export default function CheckInPage() {
 
                   <div className="space-y-2">
                     <h2 className={`${font.className} text-2xl text-red-500 font-black tracking-tight uppercase`}>
-                      Registration Not Found
+                      YOU are not Registered
                     </h2>
                     <p className="text-slate-400 font-mono text-xs uppercase tracking-widest leading-relaxed max-w-xs mx-auto">
                       Please contact the Help Desk.
