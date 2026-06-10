@@ -376,8 +376,8 @@ export default function CheckInPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <h2 className={`${font.className} text-2xl text-red-500 font-black tracking-tight uppercase`}>
-                      YOU are not Registered
+                    <h2 className={`${font.className} text-2xl text-red-500 font-black tracking-tight`}>
+                      You are not REGISTERED
                     </h2>
                     <p className="text-slate-400 font-mono text-xs uppercase tracking-widest leading-relaxed max-w-xs mx-auto">
                       Please contact the Help Desk.
