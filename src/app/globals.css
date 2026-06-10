@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-quantico: var(--font-quantico);
+  
+  --color-radar: #00ff41;
+  --color-radar-dark: #008f11;
+  --color-warning: #ff3333;
+  --color-amber: #ffb000;
+  --color-panel: #11151c;
+  --color-panel-border: #1e293b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #050505;
+  --foreground: #e2e8f0;
+}
+
+html, body {
+  @apply overflow-x-hidden;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hide Next.js Dev Indicator */
+nextjs-portal {
+  display: none !important;
+}
+
+/* Custom Scanline Effect */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.25)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.2;
+}
+
+/* Custom Scrollbar for Terminal look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155; 
 }

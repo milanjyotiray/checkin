@@ -1,0 +1,4 @@
+Registered Email,Present,Timestamp,Investigator Name
+investigator.one@example.com,YES,10-Jun-2026 12:35 PM,John Doe
+investigator.two@example.com,NO,,Jane Smith
+investigator.three@example.com,NO,,Agent Mulder
