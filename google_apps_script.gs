@@ -391,7 +391,18 @@ function doPost(e) {
         }
       }
 
+      var checkInTimestamp = new Date();
+      var timeZone = "Asia/Kolkata";
+      var formattedTimestamp = Utilities.formatDate(checkInTimestamp, timeZone, "dd-MMM-yyyy hh:mm a");
+
       if (foundRowIndex === -1) {
+        // Append a new row recording the failed check-in attempt (NO)
+        var newRow = new Array(headers.length).fill("");
+        newRow[emailColIdx] = email;
+        newRow[presentColIdx] = "NO";
+        newRow[timestampColIdx] = formattedTimestamp;
+        sheet.appendRow(newRow);
+
         return ok({ success: false, error: "NOT_FOUND" });
       }
 
@@ -399,11 +410,7 @@ function doPost(e) {
         return ok({ success: true, status: "ALREADY_CHECKED_IN", name: nameVal || "Investigator" });
       }
 
-      // Update the row
-      var checkInTimestamp = new Date();
-      var timeZone = "Asia/Kolkata";
-      var formattedTimestamp = Utilities.formatDate(checkInTimestamp, timeZone, "dd-MMM-yyyy hh:mm a");
-
+      // Update the row to YES
       sheet.getRange(foundRowIndex, presentColIdx + 1).setValue("YES");
       sheet.getRange(foundRowIndex, timestampColIdx + 1).setValue(formattedTimestamp);
 
