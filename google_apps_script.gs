@@ -313,14 +313,14 @@ function doPost(e) {
         return ok({ success: false, error: "NOT_FOUND" });
       }
 
-      // Find which row contains the headers (looks for first row with "email")
+      // Find which row contains the headers (looks for first row with exact "email")
       var headerRowIdx = 0;
       for (var r = 0; r < Math.min(values.length, 10); r++) {
         var row = values[r];
         var hasEmailCol = false;
         for (var c = 0; c < row.length; c++) {
-          var valStr = String(row[c]).toLowerCase().trim();
-          if (valStr.includes("email") || valStr === "registered email") {
+          var cleanVal = String(row[c]).toLowerCase().trim().replace(/[_\s-]/g, "");
+          if (cleanVal === "email" || cleanVal === "registeredemail" || cleanVal === "registeredemailaddress" || cleanVal === "emailaddress") {
             hasEmailCol = true;
             break;
           }
@@ -442,8 +442,8 @@ function doPost(e) {
         var row = values[r];
         var hasEmailCol = false;
         for (var c = 0; c < row.length; c++) {
-          var valStr = String(row[c]).toLowerCase().trim();
-          if (valStr.includes("email") || valStr === "registered email") {
+          var cleanVal = String(row[c]).toLowerCase().trim().replace(/[_\s-]/g, "");
+          if (cleanVal === "email" || cleanVal === "registeredemail" || cleanVal === "registeredemailaddress" || cleanVal === "emailaddress") {
             hasEmailCol = true;
             break;
           }
